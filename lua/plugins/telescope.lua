@@ -7,6 +7,6 @@ return {
   },
   -- stylua: ignore
   keys = {
-    { "<leader>k", "<cmd>Telescope find_files<cr>", mode = "n" },
+    { "<leader>o", "<cmd>Telescope find_files<cr>", mode = "n" },
   },
 }
