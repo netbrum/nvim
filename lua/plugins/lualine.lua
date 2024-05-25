@@ -3,5 +3,10 @@ return {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
-  config = true,
+  opts = {
+    options = {
+      theme = "auto",
+      disabled_filetypes = { statusline = { "dashboard" } },
+    },
+  },
 }
