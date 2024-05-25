@@ -63,7 +63,7 @@ return {
           capabilities = vim.deepcopy(capabilities),
         }, servers[server] or {})
 
-        if server_opts.no_setup then
+        if server_opts["setup"] == false then
           return
         end
 
