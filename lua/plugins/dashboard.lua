@@ -1,5 +1,6 @@
 return {
   "nvimdev/dashboard-nvim",
+  lazy = false,
   event = "VimEnter",
   opts = function()
     local logo = [[
