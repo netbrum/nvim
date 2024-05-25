@@ -5,7 +5,9 @@ local function toggle_lazygit()
     cmd = "lazygit",
     hidden = true,
     direction = "float",
-    border = "double",
+    float_opts = {
+      border = "rounded",
+    },
   })
 
   lazygit:toggle()
