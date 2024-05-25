@@ -5,6 +5,7 @@ local icons = require("utils.icons")
 return {
   {
     "neovim/nvim-lspconfig",
+    event = "LazyFile",
     dependencies = {
       { "folke/neodev.nvim", opts = {
         setup_jsonls = false,

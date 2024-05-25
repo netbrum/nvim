@@ -1,5 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  event = { "LazyFile", "VeryLazy" },
   build = ":TSUpdate",
   opts = {
     highlight = {
