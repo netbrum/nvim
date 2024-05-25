@@ -1,6 +1,6 @@
 return {
   "lukas-reineke/indent-blankline.nvim",
-  event = { "LazyFile" },
+  event = "LazyFile",
   opts = {
     scope = { show_start = false, show_end = false },
     exclude = {

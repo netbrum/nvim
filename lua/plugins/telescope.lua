@@ -6,7 +6,6 @@ local Utils = require("utils.load")
 return {
   "nvim-telescope/telescope.nvim",
   version = false,
-  lazy = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
     dependencies = {
