@@ -1,4 +1,5 @@
-local Util = require("utils.lsp")
+local lsp = require("utils.lsp")
+local icons = require("utils.icons")
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
@@ -18,10 +19,22 @@ return {
       diagnostics = {
         underline = true,
         update_in_insert = false,
-        virtual_text = false,
         severity_sort = true,
         float = {
           border = "rounded",
+        },
+        virtual_text = {
+          spacing = 4,
+          source = "if_many",
+          prefix = "●",
+        },
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+            [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+            [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+            [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+          },
         },
       },
       inlay_hints = {
@@ -29,7 +42,7 @@ return {
       },
     },
     config = function(_, opts)
-      Util.on_attach(function(client, buffer)
+      lsp.on_attach(function(client, buffer)
         require("plugins.lsp.keymaps").on_attach(client, buffer)
       end)
 
