@@ -1,28 +1,30 @@
 local lsp = require("utils.lsp")
 local icons = require("utils.icons")
 
+--- Currently disabled while using noice.nvim
+---
 --- LSP handler that adds window options
 --- Stolen from MariaSolOs
 ---@param handler fun(err: any, result: any, ctx: any, config: any): integer?, integer?
 ---@param focusable boolean
 ---@return fun(err: any, result: any, ctx: any, config: any)
-local function float_handler(handler, focusable)
-  return function(err, result, ctx, config)
-    handler(
-      err,
-      result,
-      ctx,
-      vim.tbl_deep_extend("force", config or {}, {
-        focusable = focusable,
-        max_height = math.floor(vim.o.lines * 0.5),
-        max_width = math.floor(vim.o.columns * 0.4),
-      })
-    )
-  end
-end
-
-vim.lsp.handlers["textDocument/hover"] = float_handler(vim.lsp.handlers.hover, true)
-vim.lsp.handlers["textDocument/signatureHelp"] = float_handler(vim.lsp.handlers.signature_help, false)
+-- local function float_handler(handler, focusable)
+--   return function(err, result, ctx, config)
+--     handler(
+--       err,
+--       result,
+--       ctx,
+--       vim.tbl_deep_extend("force", config or {}, {
+--         focusable = focusable,
+--         max_height = math.floor(vim.o.lines * 0.5),
+--         max_width = math.floor(vim.o.columns * 0.4),
+--       })
+--     )
+--   end
+-- end
+--
+-- vim.lsp.handlers["textDocument/hover"] = float_handler(vim.lsp.handlers.hover, true)
+-- vim.lsp.handlers["textDocument/signatureHelp"] = float_handler(vim.lsp.handlers.signature_help, false)
 
 return {
   {
