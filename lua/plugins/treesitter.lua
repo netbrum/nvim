@@ -21,6 +21,8 @@ return {
     },
     ensure_installed = {
       "lua",
+      "markdown",
+      "markdown_inline",
     },
   },
   config = function(_, opts)
