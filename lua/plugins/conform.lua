@@ -3,7 +3,7 @@ return {
   lazy = true,
   -- stylua: ignore
   keys = {
-    { "<leader>f", function() require("conform").format() end, mode = "n" },
+    { "<leader>f", function() require("conform").format() end, mode = "n", desc = "Format" },
   },
   opts = {
     formatters_by_ft = {

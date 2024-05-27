@@ -10,7 +10,7 @@ M.keys = {
   { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
   { "gI", function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end, desc = "Goto Implementation" },
   { "gy", function() require("telescope.builtin").lsp_type_definitions({ reuse_win = true }) end, desc = "Goto T[y]pe Definition" },
-  { "<tab>", vim.lsp.buf.hover, desc = "Hover" },
+  { "K", vim.lsp.buf.hover, desc = "Hover" },
   { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
   {
     "<leader>cA",

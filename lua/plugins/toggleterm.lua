@@ -24,6 +24,7 @@ return {
       mode = {
         "n",
       },
+      desc = "Toggle lazygit",
     },
   },
 }

@@ -8,7 +8,7 @@ return {
   },
   -- stylua: ignore
   keys = {
-    { "<leader>j", function() require("neo-tree.command").execute({ toggle = true }) end, mode = "n" },
+    { "<leader>j", function() require("neo-tree.command").execute({ toggle = true }) end, mode = "n" , desc = "Toggle NeoTree"},
   },
   opts = {
     close_if_last_window = true,
