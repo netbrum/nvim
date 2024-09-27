@@ -37,4 +37,8 @@ if vim.fn.has("nvim-0.10") == 1 then
   opt.smoothscroll = true
 end
 
+if vim.fn.has("nvim-0.11") == 1 then
+  vim.lsp.inlay_hint.enable(true)
+end
+
 vim.g.markdown_recommended_style = 0
