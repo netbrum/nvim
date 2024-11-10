@@ -1,3 +1,5 @@
+local lsp = require("utils.lsp")
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -11,7 +13,20 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        svelte = {},
+        svelte = {
+          keys = {
+            {
+              "<leader>co",
+              lsp.action["source.organizeImports"],
+              desc = "Organize Imports",
+            },
+          },
+          capabilities = {
+            workspace = {
+              didChangeWatchedFiles = vim.fn.has("nvim-0.10") == 0 and { dynamicRegistration = true },
+            },
+          },
+        },
       },
     },
   },

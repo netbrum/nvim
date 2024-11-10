@@ -30,7 +30,9 @@ return {
   },
   -- stylua: ignore
   keys = {
-    { "<leader>of", "<cmd>Telescope find_files<cr>", mode = "n", desc = "Find files" },
-    { "<leader>og", "<cmd>Telescope live_grep<cr>", mode = "n", desc = "Grep files" },
+    { "<leader>,", "<cmd>Telescope find_files<cr>", mode = "n", desc = "Find files" },
+    { "<leader>/", "<cmd>Telescope live_grep<cr>", mode = "n", desc = "Grep files" },
+    { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
+    { "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
   },
 }

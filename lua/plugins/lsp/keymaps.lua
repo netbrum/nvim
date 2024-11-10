@@ -1,4 +1,5 @@
 local Util = require("utils.mapping")
+local lsp = require("utils.lsp")
 
 local M = {}
 
@@ -14,16 +15,7 @@ M.keys = {
   { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
   {
     "<leader>cA",
-    function()
-      vim.lsp.buf.code_action({
-        context = {
-          only = {
-            "source",
-          },
-          diagnostics = {},
-        },
-      })
-    end,
+    lsp.action.source,
     desc = "Source Action",
     has = "codeAction",
   },

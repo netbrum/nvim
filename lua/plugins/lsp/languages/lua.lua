@@ -4,7 +4,8 @@ return {
     ft = "lua",
     opts = {
       library = {
-        "luvit-meta/library",
+        { path = "luvit-meta/library", words = { "vim%.uv" } },
+        { path = "snacks.nvim", words = { "Snacks" } },
       },
     },
   },
@@ -12,7 +13,6 @@ return {
   {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
-      opts.sources = opts.sources or {}
       table.insert(opts.sources, {
         name = "lazydev",
         group_index = 0,

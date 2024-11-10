@@ -12,6 +12,7 @@ return {
     require("lazy.core.loader").add_to_rtp(plugin)
     require("nvim-treesitter.query_predicates")
   end,
+  cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
   opts = {
     highlight = {
       enable = true,

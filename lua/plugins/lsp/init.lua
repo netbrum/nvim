@@ -31,6 +31,9 @@ return {
       inlay_hints = {
         enabled = true,
       },
+      document_highlight = {
+        enabled = true,
+      },
     },
     config = function(_, opts)
       lsp.on_attach(function(client, buffer)

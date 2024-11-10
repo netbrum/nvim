@@ -1,21 +1,20 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      {
-        "Saecki/crates.nvim",
-        event = { "BufRead Cargo.toml" },
-        opts = {
-          completion = {
-            cmp = { enabled = true },
-          },
+    "Saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    opts = {
+      completion = {
+        crates = {
+          enabled = true,
         },
       },
+      lsp = {
+        enabled = true,
+        actions = true,
+        completion = true,
+        hover = true,
+      },
     },
-    opts = function(_, opts)
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, { name = "crates" })
-    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -34,14 +33,9 @@ return {
   },
   {
     "mrcjkb/rustaceanvim",
-    version = "^4",
+    version = vim.fn.has("nvim-0.10.0") == 0 and "^4" or false,
     ft = { "rust" },
     opts = {
-      tools = {
-        hover_actions = {
-          replace_builtin_hover = false,
-        },
-      },
       server = {
         on_attach = function(_, bufnr)
           vim.keymap.set("n", "<leader>cR", function()
@@ -62,11 +56,7 @@ return {
               },
             },
             -- Add clippy lints for Rust.
-            checkOnSave = {
-              allFeatures = true,
-              command = "clippy",
-              extraArgs = { "--no-deps" },
-            },
+            checkOnSave = true,
             procMacro = {
               enable = true,
               ignored = {
@@ -90,21 +80,6 @@ return {
         rust_analyzer = {
           -- rustaceanvim handles setting up rust-analyzer
           setup = false,
-        },
-        taplo = {
-          keys = {
-            {
-              "<tab>",
-              function()
-                if vim.fn.expand("%:t") == "Cargo.toml" and require("crates").popup_available() then
-                  require("crates").show_popup()
-                else
-                  vim.lsp.buf.hover()
-                end
-              end,
-              desc = "Show Crate Documentation",
-            },
-          },
         },
       },
     },
