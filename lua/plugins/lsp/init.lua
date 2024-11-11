@@ -1,4 +1,5 @@
 local lsp = require("utils.lsp")
+local lsp_keymaps = require("plugins.lsp.keymaps")
 local icons = require("utils.icons")
 
 return {
@@ -37,26 +38,57 @@ return {
     },
     config = function(_, opts)
       lsp.on_attach(function(client, buffer)
-        require("plugins.lsp.keymaps").on_attach(client, buffer)
+        lsp_keymaps.on_attach(client, buffer)
       end)
 
-      for name, icon in pairs(require("utils.icons").diagnostics) do
-        name = "DiagnosticSign" .. name
-        vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+      if vim.fn.has("nvim-0.10.0") == 0 then
+        if type(opts.diagnostics.signs) ~= "boolean" then
+          for severity, icon in pairs(opts.diagnostics.signs.text) do
+            local name = vim.diagnostic.severity[severity]:lower():gsub("^%l", string.upper)
+            name = "DiagnosticSign" .. name
+            vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+          end
+        end
+      end
+
+      if vim.fn.has("nvim-0.10") == 1 then
+        if opts.inlay_hints.enabled then
+          lsp.on_supports_method("textDocument/inlayHint", function(_, buffer)
+            if
+              vim.api.nvim_buf_is_valid(buffer)
+              and vim.bo[buffer].buftype == ""
+              and not vim.tbl_contains(opts.inlay_hints.exclude, vim.bo[buffer].filetype)
+            then
+              vim.lsp.inlay_hint.enable(true, { bufnr = buffer })
+            end
+          end)
+        end
+      end
+
+      if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
+        opts.diagnostics.virtual_text.prefix = vim.fn.has("nvim-0.10.0") == 0 and "●"
+          or function(diagnostic)
+            for d, icon in pairs(icons.diagnostics) do
+              if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
+                return icon
+              end
+            end
+          end
       end
 
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
-      local servers = opts.servers
-      local mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
-
-      local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+      local has_blink, blink = pcall(require, "blink.cmp")
       local capabilities = vim.tbl_deep_extend(
         "force",
         {},
         vim.lsp.protocol.make_client_capabilities(),
-        has_cmp and cmp_nvim_lsp.default_capabilities() or {}
+        has_blink and blink.get_lsp_capabilities() or {},
+        opts.capabilities or {}
       )
+
+      local servers = opts.servers
+      local mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
 
       local function setup(server)
         local server_opts = vim.tbl_deep_extend("force", {
