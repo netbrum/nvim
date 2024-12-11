@@ -17,7 +17,7 @@ return {
   opts = {
     options = {
       theme = "auto",
-      disabled_filetypes = { statusline = { "dashboard", "neo-tree" } },
+      disabled_filetypes = { statusline = { "snacks_dashboard", "neo-tree" } },
     },
   },
 }
