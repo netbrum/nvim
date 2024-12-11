@@ -26,7 +26,7 @@ return {
     accept = { auto_brackets = { enabled = true } },
     sources = {
       completion = {
-        enabled_providers = { "lsp", "path", "snippets", "buffer" },
+        enabled_providers = { "lsp", "path", "snippets" },
       },
     },
   },
