@@ -11,6 +11,7 @@ return {
       lua = { "stylua" },
       javascript = { "prettierd" },
       svelte = { "prettierd" },
+      python = { "ruff_format" },
     },
   },
 }
