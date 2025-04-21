@@ -29,9 +29,6 @@ return {
           },
         },
       },
-      inlay_hints = {
-        enabled = true,
-      },
       document_highlight = {
         enabled = true,
       },
@@ -48,20 +45,6 @@ return {
             name = "DiagnosticSign" .. name
             vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
           end
-        end
-      end
-
-      if vim.fn.has("nvim-0.10") == 1 then
-        if opts.inlay_hints.enabled then
-          lsp.on_supports_method("textDocument/inlayHint", function(_, buffer)
-            if
-              vim.api.nvim_buf_is_valid(buffer)
-              and vim.bo[buffer].buftype == ""
-              and not vim.tbl_contains(opts.inlay_hints.exclude, vim.bo[buffer].filetype)
-            then
-              vim.lsp.inlay_hint.enable(true, { bufnr = buffer })
-            end
-          end)
         end
       end
 
