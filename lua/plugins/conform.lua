@@ -10,6 +10,7 @@ return {
       rust = { "rustfmt" },
       lua = { "stylua" },
       javascript = { "prettierd" },
+      typescript = { "prettierd" },
       svelte = { "prettierd" },
       python = { "ruff_format" },
     },
