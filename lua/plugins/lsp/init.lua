@@ -71,7 +71,7 @@ return {
       )
 
       local servers = opts.servers
-      local mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
+      local mslp_servers = vim.tbl_keys(require("mason-lspconfig").get_mappings().lspconfig_to_package)
 
       local function setup(server)
         local server_opts = vim.tbl_deep_extend("force", {
