@@ -27,6 +27,17 @@ return {
             vtsls = {
               enableMoveToFileCodeAction = true,
               autoUseWorkspaceTsdk = true,
+              tsserver = {
+                globalPlugins = {
+                  {
+                    name = "typescript-svelte-plugin",
+                    location = vim.fn.expand(
+                      "$MASON/packages/svelte-language-server/node_modules/typescript-svelte-plugin"
+                    ),
+                    enableForWorkspaceTypeScriptVersions = true,
+                  },
+                },
+              },
               experimental = {
                 completion = {
                   enableServerSideFuzzyMatch = true,
