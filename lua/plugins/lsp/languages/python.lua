@@ -31,7 +31,7 @@ return {
   {
     "linux-cultist/venv-selector.nvim",
     lazy = false,
-    branch = "regexp",
+    branch = "main",
     keys = {
       { "<leader>v", "<cmd>VenvSelect<cr>" },
     },
