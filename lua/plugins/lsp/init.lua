@@ -31,7 +31,7 @@ return {
         },
       },
     },
-    config = function(_, opts)
+    config = vim.schedule_wrap(function(_, opts)
       lsp.on_attach(function(client, buffer)
         lsp_keymaps.on_attach(client, buffer)
       end)
@@ -83,7 +83,7 @@ return {
         ensure_installed = vim.list_extend(install, load.opts("mason-lspconfig.nvim").ensure_installed or {}),
         automatic_enable = { exclude = mason_exclude },
       })
-    end,
+    end),
   },
   {
     "williamboman/mason.nvim",
