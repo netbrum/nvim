@@ -1,6 +1,6 @@
 local M = {}
 
-M.lazy_file_events = { "BufReadPost", "BufNewFile", "BufWritePre" }
+M.lazy_file_events = { "BufReadPost", "BufReadPre", "BufNewFile", "BufWritePre" }
 
 function M.lazy_file()
   -- This autocmd will only trigger when a file was loaded from the cmdline.

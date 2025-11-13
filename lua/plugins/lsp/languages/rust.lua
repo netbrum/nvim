@@ -79,7 +79,7 @@ return {
       servers = {
         rust_analyzer = {
           -- rustaceanvim handles setting up rust-analyzer
-          setup = false,
+          enabled = false,
         },
       },
     },

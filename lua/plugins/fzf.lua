@@ -13,13 +13,14 @@ return {
       desc = "Grep",
     },
   },
-  config = function()
-    require("fzf-lua").setup({
-      keymap = {
-        fzf = {
-          ["ctrl-q"] = "select-all+accept",
-        },
+  opts = {
+    keymap = {
+      fzf = {
+        ["ctrl-q"] = "select-all+accept",
       },
-    })
+    },
+  },
+  config = function(_, opts)
+    require("fzf-lua").setup(opts)
   end,
 }
